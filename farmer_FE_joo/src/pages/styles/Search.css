@@ -1,0 +1,11 @@
+.search-main{
+    margin: 30px 500px 20px 150px;
+    display: flex;
+    flex-direction: column;
+}
+.search-main>button{
+    height: 150px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 10px;
+}
