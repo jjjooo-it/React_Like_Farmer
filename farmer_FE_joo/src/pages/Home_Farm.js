@@ -1,15 +1,44 @@
-import { useState} from 'react';
+import { useState,useRef} from 'react';
 import './styles/Home_Farm.css';
 import Header from './Header';
 import Graph from './Graph';
 import {BiEdit} from 'react-icons/bi';
 
-
 function Profile(){
-    const[myImg, setMyImg] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
+    //이미지 업로드하는 부분(1) 시작 이에요~~~~~~~~
+    const[myImg, setMyImg] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
+    const fileInput = useRef(null);
+    const onChange = (e) => {
+        if(e.target.files[0]){
+            const file = e.target.files[0];
+        }else{ //업로드 취소할 시
+            setMyImg("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
+            return
+        }
+        //화면에 사진 표시
+        const reader = new FileReader();
+        reader.onload = () => {
+            if(reader.readyState === 2){
+                setMyImg(reader.result)
+            }
+        }
+        reader.readAsDataURL(e.target.files[0])
+    }
+    //이미지 업로드하는 부분(1) 끝 이에요~~~~~~~~
     return(
         <div className='profile'>
-           <img className='profile-img 'src={myImg} />
+            {/*이미지 업로드하는 부분(2) 시작 이에요~~~~~~~~*/}
+            <input
+            type="file"
+            style={{ display: "none" }}
+            accept="image/jpg,image/jpeg,image/png"
+            ref={fileInput}
+            onChange={onChange}
+             />
+             {/*이미지 업로드하는 부분(2) 끝 이에요~~~~~~~~*/}
+
+           <img className='profile-img 'src={myImg} 
+           onClick={()=>{fileInput.current.click()}}/> 
            <h4>ooo농부님 어서오세요!</h4>
            <hr></hr>
            <p>강릉감자재배왕</p>
@@ -21,7 +50,7 @@ function Profile(){
 }
 function Board(){
     const[postImg, setPostImg] = useState("https://images.pexels.com/photos/144248/potatoes-vegetables-erdfrucht-bio-144248.jpeg?auto=compress&cs=tinysrgb&w=800");
-    const[myImg, setMyImg] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
+    const[myImg, setMyImg] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
     return(
         <div className='board'>
             <Graph/>
