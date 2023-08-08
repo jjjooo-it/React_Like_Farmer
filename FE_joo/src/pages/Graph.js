@@ -8,58 +8,52 @@ import {
     Legend,
     ResponsiveContainer,
 } from "recharts";
-import { useState,PureComponent} from 'react';
+import {PureComponent} from 'react';
 
 const data = [
     {
         name: "8/1",
-        uv: 4000,
-        pv: 2400,
-        amt: 2400,
+        방문자수: 4,
+        글작성횟수: 2,
     },
     {
         name: "8/2",
-        uv: 3000,
-        pv: 1398,
-        amt: 2210,
+        방문자수: 1,
+        글작성횟수: 3,
     },
     {
         name: "8/3",
-        uv: 2000,
-        pv: 9800,
-        amt: 2290,
+        방문자수: 10,
+        글작성횟수: 7,
     },
     {
         name: "8/4",
-        uv: 2780,
-        pv: 3908,
-        amt: 2000,
+        방문자수: 2,
+        글작성횟수: 3,
     },
     {
         name: "8/5",
-        uv: 1890,
-        pv: 4800,
-        amt: 2181,
+        방문자수: 1,
+        글작성횟수: 4,
     },
     {
         name: "8/6",
-        uv: 2390,
-        pv: 3800,
-        amt: 2500,
+        방문자수: 2,
+        글작성횟수: 3,
     },
     {
         name: "8/7",
-        uv: 3490,
-        pv: 4300,
-        amt: 2100,
+        방문자수: 3,
+        글작성횟수: 4,
     },
 ];
 
 class Graph extends PureComponent{
+    static y = [5,10,15,20];
     static demoUrl = "https://codesandbox.io/s/simple-line-chart-kec3v";
     render() {
         return (
-            <ResponsiveContainer width="100%" height="30%">
+            <ResponsiveContainer width="100%" height={260}>
                 <LineChart
                     width={500}
                     height={300}
@@ -73,16 +67,16 @@ class Graph extends PureComponent{
                 >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
-                    <YAxis />
+                    <YAxis  domain={[0, 'auto']}/>
                     <Tooltip />
                     <Legend />
                     <Line
                         type="monotone"
-                        dataKey="pv"
+                        dataKey="글작성횟수"
                         stroke="#8884d8"
                         activeDot={{ r: 8 }}
                     />
-                    <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                    <Line type="monotone" dataKey="방문자수" stroke="#82ca9d" />
                 </LineChart>
             </ResponsiveContainer>
         );

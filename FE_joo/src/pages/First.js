@@ -13,7 +13,7 @@ function First(){
                <h1>멋쟁이 농부처럼</h1>
                <h4>LIKE FARMER</h4>
                <button onClick={()=>{navigate('/farm')}}>농부로 시작하기</button>
-               <button onClick={()=>{navigate('/consume')}}>소비자로 시작하기</button>
+               <button onClick={()=>{navigate('/consume')}}>게스트로 시작하기</button>
             </div>
         </>
     );
