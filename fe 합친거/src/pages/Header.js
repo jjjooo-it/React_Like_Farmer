@@ -31,7 +31,7 @@ function Header(){
         </div>
         <div className='header-btn'>
           <button onClick={()=>navigate('/farm')}><AiOutlineHome style={{ width: "30px", height: "30px",color: "gray" }}/>홈</button>
-          <button><CgProfile style={{ width: "30px", height: "30px" ,color: "gray"}}/>내 정보</button> {/*성민님 코드 연결*/}
+          <button onClick={()=>navigate('/info')}><CgProfile style={{ width: "30px", height: "30px" ,color: "gray"}}/>내 정보</button> {/*성민님 코드 연결*/}
           <button onClick={()=>navigate('/findworker')}><MdOutlineWorkOutline style={{ width: "30px", height: "30px",color: "gray" }}/>일꾼 구하기</button>
           <button onClick={()=>navigate('/')}><BsBoxArrowRight style={{ fontWeight:"bolder", width: "30px", height: "30px" ,color: "gray"}}/>처음으로</button>
         </div>

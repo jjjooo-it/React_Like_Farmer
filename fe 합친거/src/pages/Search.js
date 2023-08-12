@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import './styles/Home_Farm.css';
 import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import { useNavigate } from 'react-router-dom';
 import './styles/Search.css';
+import axios from 'axios';
 
 function TodayInfo(){
   const navigate = useNavigate();
@@ -27,9 +28,35 @@ function TodayInfo(){
 }
 function Search_Main(){
   const location = useLocation();
-  const search = location.state.search;
-  const[myImg, setMyImg] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
-  const[result, setResult]= useState([1,2,3,4,5]);
+  const search = location.state.search; //검색한 내용
+  const [searchList, setSearchList]= useState([]);
+//(1) 검색하기
+  useEffect(() => {
+    const getSearch = async ()=>{
+        try {
+            const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjkxNzQwMTEwLCJleHAiOjU0MjQyMjAxMTB9.2Uryb4nWxbwfagcEr-UgapHhGkbW40pSCGGMCdqBYZY"; 
+            const response = await axios.get('/user/home', {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+            });
+            if (response.data.user.item===search) {
+              setSearchList(response.data.user);
+            }
+            if(searchList==='') console.log('농부가 없어요');
+            else console.log(searchList);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+         getSearch();
+    }, [searchList]);
+
+    //(2) 최근 수정 정렬
+
+
+    //(3) tier 순 정렬
   return(
     <div className='search-main'>
     <p><span style={{fontWeight :"bold",color: "rgb(54, 131, 24)"}}>{search}</span>(을)를 키우시는 농부님들을 확인하세요!</p>
@@ -38,17 +65,19 @@ function Search_Main(){
        <button>티어 높은 순</button>
        <button>최신 활동 순</button>
     </div>
-    {result.map((a,i)=>(
-          <div className='search-text' key={i}>
-          <img src={myImg}/>
+    {searchList.map((a,i)=>{
+        return(
+          <div className='search-text'key={i} >
+          <img src={a.image}/>
           <div className='search-col'>
-          <h4>홍길동_마스터 농부</h4>
-          <p>강릉감자재배왕</p>
-          <p>감자,고구마 풀스택</p>
+          <h4>{a.name}</h4>
+          <p>{a.nickname}</p>
+          <p>{a.item}</p>
           </div>
           <p>클릭하여 명함 확인&nbsp;&nbsp;》</p>
         </div>
-    ))}
+
+      )})}
   </div>
   
   )

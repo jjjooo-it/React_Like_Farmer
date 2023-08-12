@@ -45,6 +45,7 @@
 .first-txt>button:hover{
     width: 220px;
     height: 70px;
+    margin-bottom: 10px;
     background-color: rgb(54, 131, 24);
-    transition: 0.4s;
+    transition: 1s;
 }
