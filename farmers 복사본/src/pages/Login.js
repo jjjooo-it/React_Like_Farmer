@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './styles/Login.css';
 import Header from './Header';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const navigate = useNavigate();
@@ -16,8 +16,8 @@ function Login() {
     };
 
     try {
-      const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjkxNTczMTUwLCJleHAiOjU0MjQwNTMxNTB9.FZimhlaTengZe-GN3433woPLkiyvGuyPoC6-d2BLROA";
-      const response = await fetch('http://3.39.3.54:8080/auth/login', {
+      const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjkxNTczMTUwLCJleHAiOjU0MjQwNTMxNTB9.FZimhlaTengZe-GN3433woPLkiyvGuyPoC6-d2BLROA"; // Access Token 값 설정
+      const response = await fetch('/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,14 +29,16 @@ function Login() {
       if (response.ok) {
         const data = await response.json();
         console.log('Login response:', data);
-        navigate('/farm');
+        navigate('/farm', { state: { userId: data.userId, token: data.tokenDto.accessToken } }); // userId와 token을 페이지 전환과 함께 전달
 
-      }else {
+      } else {
         const data = await response.json();
         setError(data.message || '로그인에 실패했습니다.');
+        alert(data.message);
       }
     } catch (error) {
       setError('오류가 발생했습니다. 나중에 다시 시도해주세요.');
+      alert("로그인에 실패했습니다.");
     }
   };
 
@@ -50,6 +52,7 @@ function Login() {
 }
 
 function Boyd({ setId, setPw, handleLogin }) {
+  const navigate = useNavigate()
   return (
     <div className='container'>
       <div className='item'></div>
@@ -91,6 +94,7 @@ function Boyd({ setId, setPw, handleLogin }) {
             type="submit"
             value="회원가입"
             className="signupBTN"
+            onClick={()=>{navigate('/signup')}}
           />
         </div>
         <div className='gog'>

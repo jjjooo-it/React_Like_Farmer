@@ -2,19 +2,25 @@ import { useState,useEffect} from 'react';
 import './styles/Home_Farm.css';
 import Header from './Header';
 import {BiEdit} from 'react-icons/bi';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate,useLocation} from 'react-router-dom';
 import axios from 'axios';
+import img3 from './img/locloc.png';
 
 
 //1. 프로필 (완료)
 function HomeProfile(){
     const navigate = useNavigate();
+    const location = useLocation();
+    const userInfoFromLocation = location.state || {};
     const [homeProfile, setHomeProfile]= useState({
         name : '',
         nickname : '',
         image : '',
         item : '',
     });
+    const handleCardButtonClick = () => {
+        navigate('/Card', { state: { userId: userInfoFromLocation.userId, token: userInfoFromLocation.token } }); 
+    };
     useEffect(() => {
     const getHomeProfile = async ()=>{
         try {
@@ -47,7 +53,7 @@ function HomeProfile(){
            <hr></hr>
            <p>{homeProfile.nickname}</p>
            <p>⛤{homeProfile.item} 풀스택⛤</p>
-           <button className='profile-btn-card'onClick={()=> navigate('/Card')}>내 명함</button>
+           <button className='profile-btn-card'onClick={handleCardButtonClick}>내 명함</button>
            <button onClick={()=>{navigate('/edit-profile')}} className='profile-btn-edit'><BiEdit style={{ width: "20px", height: "20px",color: "gray" }}/>수정하기</button>
         </div>
     )
@@ -108,9 +114,9 @@ function Board_Post(){
     const [showCommentID, setShowCommentID]= useState(1);
   
   
-    const clickEditBtn = id =>{ //글수정(성민님 코드로 넘기기)
-        setEditID(id);
-        navigate('/edit-write',{ state: { postId : id } })
+    const clickEditBtn = postId =>{ //글수정
+        setEditID(postId);
+        navigate('/edit-write',{ state: { postId : postId } })
     }
  
     const clickshowBtn =  id =>{ //댓글보기
@@ -129,21 +135,25 @@ function Board_Post(){
                 <div key={i}>
                 <div className='board-post'>
                    <div className='board-text'>
-                       <p>{a.location}</p>
-                       <p>작성: {a.createdAt}</p>
-                       <p>수정: {a.updatedAt}</p>
+                       <div className='board-text-title'>
+                          <img style={{width: "18px", height:"18px"}} src={img3} />
+                          <p style={{fontWeight :"bold"}}>{a.location}</p>
+                          <p>작성: {a.createdAt} | </p>
+                          <p>수정: {a.updatedAt}</p>
+                       </div>
                        <div className='board-text-btn'>
                            <button onClick={() => clickEditBtn(a.postId)}>수정하기</button>
                            <button onClick={() =>  deletePost(a.postId)}>삭제하기</button>
-                           <button onClick={() => clickshowBtn(a.postId)}>댓글보기</button>
                        </div>
                     </div>
                     <div className='board-text-main' key={i}>
-                        <img src={a.image} style={{ width: "650px", height: "230px"}}/>
+                        <img src={a.image} style={{ width: "650px", height: "270px", marginTop:"20px"}}/>
                         <p>{a.description}</p> 
                     </div>
+                    <hr style={{width: "400px", marginTop:"30px", marginBottom:"30px"}}/>
+                    <button className="show"onClick={() => clickshowBtn(a.postId)}>댓글보기</button>
+                    <Post_Comment postId={a.postId}/>
                 </div>
-                <Post_Comment postId={a.postId}/>
                 {showTF && showCommentID === a.postId ?  <Show_Comment postId={a.postId}/> : null}
                 </div>
             ))}
@@ -191,6 +201,7 @@ function Post_Comment(props){
               setPostCommentData({ ...postCommentData, password: e.target.value });
             }}
           />
+          <br/>
           <input
             className='comment-text'
             type='text'
@@ -270,8 +281,9 @@ useEffect(()=>{
           </div>
         ))
       ) : (
-        <p>댓글이 없습니다.</p>
+        <p style={{textAlign: "center"}}>댓글이 없습니다.</p>
       )}
+       <hr style={{width: "500px",borderTop:"1px dashed #bbb",marginBottom:"30px"}}></hr>
     </>
       );   
 }        

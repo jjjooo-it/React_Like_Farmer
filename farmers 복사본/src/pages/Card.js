@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import './styles/Card.css';
 import Header from './Header';
-import img from './img/icon-u.png';
 import img2 from './img/item.png';
 import img3 from './img/locloc.png';
 import img4 from './img/ring.png';
 import img5 from './img/picpic.png';
+import { useLocation } from 'react-router-dom';
 
 function Card() {
-  const userId = 1;
-  const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjkxNTczMTUwLCJleHAiOjU0MjQwNTMxNTB9.FZimhlaTengZe-GN3433woPLkiyvGuyPoC6-d2BLROA";
+  const location = useLocation();
+  const userInfoFromLocation = location.state || {}; // location.state가 없을 때를 위해 빈 객체로 초기화
+
+  const userId = userInfoFromLocation.userId;
+  const token = userInfoFromLocation.token;
+
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
@@ -33,8 +37,10 @@ function Card() {
       }
     };
 
-    fetchUserInfo();
-  }, []);
+    if (userId && token) { // userId와 token이 유효한 경우에만 fetchUserInfo 실행
+      fetchUserInfo();
+    }
+  }, [userId, token]);
 
   return (
     <div className="Card">
@@ -48,23 +54,23 @@ function Card() {
 function Boyd({ userInfo }) {
   return (
     <div className='containerCard'>
-        <div className='card'>
-            <div className='cardName'>
-              <div><img className ="userImg" alt="iconImg" src={img5} /></div>
-              <div>
-                <div className='name'>{userInfo.name}</div>
-                <div className='nickname'>{userInfo.nickname}</div></div>
-                
-            </div>
-            <div className='cardInfo'>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div className='num'>{userInfo.phone} | <img className="icon" alt="iconImg" src={img4} /></div>
-                <div className='item'>재배품목: {userInfo.item} | <img className="icon" alt="iconImg" src={img2} /></div>
-                <div className='loc'>{userInfo.location} | <img className="icon" alt="iconImg" src={img3} /></div>
-            </div>
+      <div className='card'>
+        <div className='cardName'>
+          <div className='imgCon'><img className ="userImg" alt="iconImg" src={userInfo.image} /></div>
+          <div>
+            <div className='name'>{userInfo.name}[{userInfo.nickname}]</div>
+            <div className='num'>{userInfo.phone}</div>
+          </div>
         </div>
+        <div className='cardInfo'>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div className='num2'>{userInfo.phone} | <img className="icon" alt="iconImg" src={img4} /></div>
+          <div className='item'>재배품목: {userInfo.item} | <img className="icon" alt="iconImg" src={img2} /></div>
+          <div className='loc'>{userInfo.location} | <img className="icon" alt="iconImg" src={img3} /></div>
+        </div>
+      </div>
     </div>
   );
 }

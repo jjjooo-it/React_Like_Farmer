@@ -1,14 +1,3 @@
-.lower {
-    text-align: center;
-    height: 150px;
-    background-color: rgb(246, 247, 249);
-    line-height: 100px;
-  }
-  
-  .lower > p {
-    margin: 0;
-  }
-  
   .container {
     width: 100%;
     height: 700px;

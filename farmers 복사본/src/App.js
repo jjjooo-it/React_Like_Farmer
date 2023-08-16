@@ -13,6 +13,7 @@ import Info from './pages/Info';
 import Card from './pages/Card';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Editwrite from './pages/Editwrite';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
     <Route path='/card' element={<Card/>}/>
     <Route path='/login' element={<Login/>}/>
     <Route path='/signup' element={<Signup/>}/>
+    <Route path='/edit-write' element={<Editwrite/>}/>
 
     </Routes>    
   )
