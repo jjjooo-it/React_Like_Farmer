@@ -15,6 +15,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Editwrite from './pages/Editwrite';
 import AddRecord from './pages/AddRecord';
+import AddInventory from './pages/AddInventory';
 import { AuthProvider } from './AuthContext';
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
     <Route path='/login' element={<Login/>}/>
     <Route path='/signup' element={<Signup/>}/>
     <Route path='/edit-write' element={<Editwrite/>}/>
+    <Route path='/add-inventory' element={<AddInventory/>}/>
     <Route path="/add-record" element={<AddRecord />} />
 
     </Routes>

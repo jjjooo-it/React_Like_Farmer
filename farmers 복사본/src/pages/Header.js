@@ -16,7 +16,7 @@ function Header() {
 
   const userInfoFromLocation = location.state || {};
   const onClick = () => {
-    search === '' ? alert("검색어를 입력하세요!") : navigate('/search', { state: { search: search } })
+  navigate('/search', { state: { search: search } })
   }
   const onKeyPress = (e) => {
     if (e.key == 'Enter') {

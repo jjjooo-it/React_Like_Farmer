@@ -19,7 +19,7 @@ function Card() {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch(`/user/profile/${userId}`, {
+        const response = await fetch(`/auth/profile/${userId}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`

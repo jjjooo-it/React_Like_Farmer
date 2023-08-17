@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from './Header';
-import './styles/Home_Farm.css';
-import AddInventory from './AddInventory';
+import { useAuth } from './../AuthContext';
 
 function EditInventoryItem() {
     const location = useLocation();
@@ -19,9 +18,11 @@ function EditInventoryItem() {
         gram: gram || ''
     });
 
-    const handleUpdate = () => {
-        const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjkxNTczMTUwLCJleHAiOjU0MjQwNTMxNTB9.FZimhlaTengZe-GN3433woPLkiyvGuyPoC6-d2BLROA";
+    const { auth } = useAuth(); // AuthContext에서 auth 상태를 가져옵니다.
+    const { userId, token } = auth; // userId와 token을 분해할당합니다.
 
+    const handleUpdate = () => {
+        
         axios.patch(`/item/${itemId}`, item, {
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -45,10 +46,8 @@ function EditInventoryItem() {
     return (
         <>
             <Header />
-            <div className="profileInfoContainer">
-            <div className='inventoryBox'>
+            <div className="editInventoryContainer">
                 <h2>{title ? `${title} 수정하기` : '농작물 수정하기'}</h2>
-                <hr />
                 <div>
                     <label>
                         작물명:
@@ -69,9 +68,7 @@ function EditInventoryItem() {
                         />
                     </label>
                 </div>
-                <br />
                 <button onClick={handleUpdate}>수정하기</button>
-                </div>
             </div>
         </>
     );

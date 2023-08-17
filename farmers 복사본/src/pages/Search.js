@@ -50,7 +50,7 @@ function Search_Main(){
     const getSearch = async ()=>{
         try {
             const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMyIsImlhdCI6MTY5MTkzNjM0OSwiZXhwIjo1NDI0NDE2MzQ5fQ.hk_VveWhENStASA9hIrDhoGUpAENRkOf0Ib6qKslPQs"; 
-            const response = await axios.post('/user/post', 
+            const response = await axios.post('/auth/tier', 
             { keyword: searchItem }, 
               {
                 headers: {
@@ -71,9 +71,8 @@ function Search_Main(){
 
   return(
     <div className='search-main'>
-    <p><span style={{fontWeight :"bold",color: "rgb(54, 131, 24)"}}>{searchItem}</span>(을)를 키우시는 농부님들을 확인하세요!</p>
+    <p><span style={{fontWeight :"bold",color: "rgb(54, 131, 24)"}}>{searchItem}</span>(을)를 키우시는 농부님들을 확인하세요! [티어순 정렬]</p>
     <div className='sort'>
-      <button>티어순 정렬</button>
     <div className='sort-text'>
       {searchList.length > 0 ? (
         <div>

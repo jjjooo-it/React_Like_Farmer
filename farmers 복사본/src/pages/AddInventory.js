@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header';
+import { useAuth } from './../AuthContext';
 import './styles/Home_Farm.css';
 
 
@@ -9,11 +10,12 @@ function AddInventory() {
     const [title, setTitle] = useState('');
     const [gram, setGram] = useState('');
     const navigate = useNavigate();
+    const { auth } = useAuth(); // AuthContext에서 auth 상태를 가져옵니다.
+    const { userId, token } = auth; // userId와 token을 분해할당합니다.
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjkxNTczMTUwLCJleHAiOjU0MjQwNTMxNTB9.FZimhlaTengZe-GN3433woPLkiyvGuyPoC6-d2BLROA";
         const data = {
             title: title,
             gram: gram
@@ -26,7 +28,7 @@ function AddInventory() {
         })
         .then(response => {
             console.log('농작물 저장 성공:', response);
-            navigate('/info'); // 저장 성공 후 프로필 페이지로 이동
+            navigate(-1); // 저장 성공 후 프로필 페이지로 이동
         })
         .catch(error => {
             console.error('농작물 저장 중 오류 발생:', error);

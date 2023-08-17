@@ -32,7 +32,7 @@ function Guest_Board_Post(){
      const getAllPost = async () => {
          try {
              const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjkxNTczMTUwLCJleHAiOjU0MjQwNTMxNTB9.FZimhlaTengZe-GN3433woPLkiyvGuyPoC6-d2BLROA";
-             const response = await axios.get('/post', {
+             const response = await axios.get('/auth/post', {
                  headers: {
                      "Authorization": `Bearer ${token}`,
                      "Content-Type": "application/json"

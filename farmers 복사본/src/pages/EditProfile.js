@@ -27,7 +27,7 @@ function EditProfile() {
                     return;
                 }
                 
-                const response = await axios.get(`/user/profile/${userId}`, {
+                const response = await axios.get(`/auth/profile/${userId}`, {
                     headers: {
                         "Authorization": `Bearer ${token}`,
                     }

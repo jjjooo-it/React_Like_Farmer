@@ -2,9 +2,13 @@ import { useState, useEffect } from 'react';
 import './styles/Home_Farm.css';
 import Header from './Header';
 import { BiEdit } from 'react-icons/bi';
+import {AiFillEdit}from 'react-icons/ai';
+import {RiDeleteBin6Fill} from 'react-icons/ri';
+import {FaLocationDot} from 'react-icons/fa6';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import img3 from './img/locloc.png';
+import chat from './img/chat.png';
 import { useAuth } from './../AuthContext';
 
 
@@ -32,7 +36,7 @@ function HomeProfile() {
     useEffect(() => {
         const getHomeProfile = async () => {
             try {
-                const response = await axios.get('/user/home', {
+                const response = await axios.get(`/auth/home/${userId}`, {
                     headers: {
                         "Authorization": `Bearer ${token}`,
                         "Content-Type": "application/json"
@@ -76,7 +80,7 @@ function Board_Post() {
     const getAllPost = async () => {
         try {
 
-            const response = await axios.get('/post', {
+            const response = await axios.get('/auth/post', {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
@@ -143,30 +147,34 @@ function Board_Post() {
                     <div key={i}>
                         <div className='board-post'>
                             <div className='board-text'>
+                              <div className='loc'>
+                                  <FaLocationDot style={{ width: "16px", height: "16px",color: "black" }}/>
+                                  <p style={{fontWeight :"bold"}}>{a.location}</p>
+                              </div>
                                 <div className='board-text-title'>
-                                    <img style={{ width: "18px", height: "18px" }} src={img3} />
-                                    <p style={{ fontWeight: "bold" }}>{a.location}</p>
                                     <p>작성: {a.createdAt} | </p>
                                     <p>수정: {a.updatedAt}</p>
                                 </div>
                                 <div className='board-text-btn'>
-                                    <button onClick={() => clickEditBtn(a.postId)}>수정하기</button>
-                                    <button onClick={() => deletePost(a.postId)}>삭제하기</button>
+                                    <button onClick={() => clickEditBtn(a.postId)}><AiFillEdit style={{ width: "15px", height: "15px",color: "gray" }}/>수정하기</button>
+                                    <button onClick={() => deletePost(a.postId)}><RiDeleteBin6Fill style={{ width: "15px", height: "15px",color: "gray" }}/>삭제하기</button>
                                 </div>
                             </div>
                             <div className='board-text-main' key={i}>
                                 <img src={a.image} style={{ width: "650px", height: "270px", marginTop: "20px" }} />
-                                <p>{a.description}</p>
+                                <p style={{fontSize:"18px"}}>{a.description}</p>
                             </div>
-                            <hr style={{ width: "400px", marginTop: "30px", marginBottom: "30px" }} />
-                            <button className="show" onClick={() => clickshowBtn(a.postId)}>댓글보기</button>
-                            <Post_Comment postId={a.postId} />
-                        </div>
-                        {showTF && showCommentID === a.postId ? <Show_Comment postId={a.postId} /> : null}
-                    </div>
-                ))}
-            </div>
-        </>
+                            <hr style={{width: "500px",borderTop:"1px dashed #bbb",marginBottom:"5px"}}></hr>
+                            <button className="show"onClick={() => clickshowBtn(a.postId)}>
+                             <img style={{width:"18px", height:"18px"}}src={chat}></img>&nbsp;&nbsp;
+                            <p>댓글</p></button>
+
+                            {showTF && showCommentID === a.postId ? <><Post_Comment postId={a.postId}/> <Show_Comment postId={a.postId}/></> : null}
+                       </div>
+                  </div>
+            ))}
+        </div>
+  </>
     )
 }
 //3. 댓글 (1)댓글 달기 
@@ -182,7 +190,7 @@ function Post_Comment(props) {
     const postComment = async () => {
         try {
 
-            const response = axios.post(`/comment/${props.postId}`,
+            const response = axios.post(`/auth/comment/${props.postId}`,
                 postCommentData,
                 {
                     headers: {
@@ -242,7 +250,7 @@ function Show_Comment(props) {
         const getComment = async () => {
             try {
 
-                const response = await axios.get(`/comment/${props.postId}`,
+                const response = await axios.get(`/auth/comment/${props.postId}`,
                     {
                         headers: {
                             "Authorization": `Bearer ${token}`,
@@ -262,7 +270,7 @@ function Show_Comment(props) {
         const passwordInput = prompt("댓글을 삭제하려면 비밀번호를 입력하세요:");
         if (passwordInput !== null) {
             try {
-                const response = await axios.delete(`/comment/${props.postId}/${commentId}`, {
+                const response = await axios.delete(`/auth/comment/${props.postId}/${commentId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -311,8 +319,7 @@ function Tier() {
     useEffect(() => {
         const getTier = async () => {
             try {
-                const userId = 2;
-                const response = await axios.get(`/user/profile/${userId}`, {
+                const response = await axios.get(`/auth/profile/${userId}`, {
                     headers: {
                         "Authorization": `Bearer ${token}`,
                         "Content-Type": "application/json"
