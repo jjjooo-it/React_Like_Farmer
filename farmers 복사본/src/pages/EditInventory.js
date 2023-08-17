@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from './Header';
+import './styles/Home_Farm.css';
+import AddInventory from './AddInventory';
 
 function EditInventoryItem() {
     const location = useLocation();
@@ -43,8 +45,10 @@ function EditInventoryItem() {
     return (
         <>
             <Header />
-            <div className="editInventoryContainer">
+            <div className="profileInfoContainer">
+            <div className='inventoryBox'>
                 <h2>{title ? `${title} 수정하기` : '농작물 수정하기'}</h2>
+                <hr />
                 <div>
                     <label>
                         작물명:
@@ -65,7 +69,9 @@ function EditInventoryItem() {
                         />
                     </label>
                 </div>
+                <br />
                 <button onClick={handleUpdate}>수정하기</button>
+                </div>
             </div>
         </>
     );

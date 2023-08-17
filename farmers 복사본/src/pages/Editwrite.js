@@ -6,15 +6,15 @@ import './styles/write.css';
 
 function CreatePost() {
     const [post, setPost] = useState({
-        location: "",
-        description: "",
+        location: '',
+        description: '',
     });
     const [image, setImage] = useState(null);  // 이미지용 별도 상태
     const [previewImage, setPreviewImage] = useState(null);  // 미리보기 이미지 URL용 상태
     const navigate = useNavigate();
-
     const location = useLocation();
     const postId = location.state.postId;
+
     const handleInputChange = (e) => {
         setPost({
             ...post,
@@ -26,8 +26,8 @@ function CreatePost() {
             const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjkxNTczMTUwLCJleHAiOjU0MjQwNTMxNTB9.FZimhlaTengZe-GN3433woPLkiyvGuyPoC6-d2BLROA"; // 실제 토큰으로 교체
     
             // 포스트 데이터를 보내기 위한 Axios 요청
-            const postResponse = await axios.patch(`/post/${postId}/update`, 
-            post, {
+            const postResponse = await axios.patch(`/post/${postId}`, post
+            , {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
@@ -44,9 +44,11 @@ function CreatePost() {
     
                 // 파일을 FormData에 첨부
                 formData.append('file', image);
+                formData.append('location', post.location);
+                formData.append('description', post.description);
     
                 // 파일을 보내기 위한 Axios 요청
-                imageRequest = await axios.patch(`/post/${postId}/file`, formData, {
+                imageRequest = await axios.patch(`/post/${postId}`, formData, {
                     headers: {
                         "Authorization": `Bearer ${token}`,
                         "Content-Type": "multipart/form-data"
@@ -64,8 +66,6 @@ function CreatePost() {
             alert(`실패: ${error.response ? error.response.data.message : "알 수 없는 오류"}`);
         }
     }
-    
-
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];

@@ -12,11 +12,9 @@ function TodayInfo(){
   const tipArray = [
      "고추 아주심기는 늦서리가 끝난 후 맑은 날에 심는 것이 좋아요",
      "33도 이상은 열사병 위험이 있어 외출을 자제하세요",
-     "치악산 복숭아 당도 최고 (광고임)",
-     "광고",
-     "광광고",
-     "영농 꿀팁.."
-  ];
+     "(AD)치악산 복숭아 당도 최고",
+     "(AD)트랙터 구매 원하시는 분은 010-2222-3333으로 연락바랍니다",
+      ];
   useEffect(() => {
     const tipNum = Math.floor(Math.random() * tipArray.length);
     setTip(tipArray[tipNum]);
@@ -40,13 +38,15 @@ function TodayInfo(){
   )
 }
 
+
+
 //검색하기
 function Search_Main(){
   const navigate = useNavigate();
   const location = useLocation();
   const searchItem = location.state.search; //검색한 내용
   const [searchList, setSearchList]= useState([]);
-
+  
     const getSearch = async ()=>{
         try {
             const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMyIsImlhdCI6MTY5MTkzNjM0OSwiZXhwIjo1NDI0NDE2MzQ5fQ.hk_VveWhENStASA9hIrDhoGUpAENRkOf0Ib6qKslPQs"; 
@@ -67,16 +67,14 @@ function Search_Main(){
     }
     useEffect(() => {
          getSearch();
-    }, []);
+    }, [searchItem]);
 
   return(
     <div className='search-main'>
     <p><span style={{fontWeight :"bold",color: "rgb(54, 131, 24)"}}>{searchItem}</span>(을)를 키우시는 농부님들을 확인하세요!</p>
-  
     <div className='sort'>
-       <button>티어 높은 순</button>
-       <button>최신 활동 순</button>
-    </div>
+      <button>티어순 정렬</button>
+    <div className='sort-text'>
       {searchList.length > 0 ? (
         <div>
           {searchList.map((a,i) => (
@@ -95,11 +93,12 @@ function Search_Main(){
         <p>검색 결과가 없습니다.</p>
       )}
   </div>
+  </div>
+  </div>
   
   )
 }
 function Search(){
-  
     return (
         <>
           <Header />

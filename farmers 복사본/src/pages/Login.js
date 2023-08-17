@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import './styles/Login.css';
 import Header from './Header';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from './../AuthContext';
+
 
 function Login() {
   const navigate = useNavigate();
+  const { setAuth } = useAuth();
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [error, setError] = useState('');
@@ -14,33 +17,46 @@ function Login() {
       id: id,
       pw: pw
     };
-
+  
     try {
-      const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjkxNTczMTUwLCJleHAiOjU0MjQwNTMxNTB9.FZimhlaTengZe-GN3433woPLkiyvGuyPoC6-d2BLROA"; // Access Token 값 설정
       const response = await fetch('/auth/login', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          "Authorization": `Bearer ${token}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(requestData)
       });
-
+  
       if (response.ok) {
         const data = await response.json();
         console.log('Login response:', data);
-        navigate('/farm', { state: { userId: data.userId, token: data.tokenDto.accessToken } }); // userId와 token을 페이지 전환과 함께 전달
-
+  
+        // Set the received token and userId to the Auth context
+        setAuth({
+          userId: data.userId,
+          token: data.tokenDto.accessToken
+        });
+  
+        // Navigate to the next page with the received userId and token
+        navigate('/farm', {
+          state: {
+            userId: data.userId,
+            token: data.tokenDto.accessToken
+          }
+        });
+  
       } else {
         const data = await response.json();
         setError(data.message || '로그인에 실패했습니다.');
         alert(data.message);
       }
+  
     } catch (error) {
       setError('오류가 발생했습니다. 나중에 다시 시도해주세요.');
       alert("로그인에 실패했습니다.");
     }
   };
+  
 
   return (
     <div className="Login">
@@ -122,3 +138,4 @@ function Lower() {
 }
 
 export default Login;
+

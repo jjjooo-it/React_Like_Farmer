@@ -8,9 +8,11 @@ function CreatePost() {
     const [post, setPost] = useState({
         location: "",
         description: "",
+        image : null,
     });
     const [image, setImage] = useState(null);  // 이미지용 별도 상태
     const [previewImage, setPreviewImage] = useState(null);  // 미리보기 이미지 URL용 상태
+
     const navigate = useNavigate();
 
     const handleInputChange = (e) => {
@@ -39,7 +41,10 @@ function CreatePost() {
             if (image) {    
                 // 새 FormData 인스턴스 생성
                 const formData = new FormData();
-    
+                formData.append('file', image);
+                formData.append('location', post.location);
+                formData.append('description', post.description);
+
                 // 파일을 FormData에 첨부
                 formData.append('file', image);
     

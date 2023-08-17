@@ -14,9 +14,12 @@ import Card from './pages/Card';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Editwrite from './pages/Editwrite';
+import AddRecord from './pages/AddRecord';
+import { AuthProvider } from './AuthContext';
 
 function App() {
   return (
+    <AuthProvider>
     <Routes>
     <Route path="/" element = {<FirstPage/>} />
     <Route path="/farm" element = {<FarmPage/>} />
@@ -33,8 +36,10 @@ function App() {
     <Route path='/login' element={<Login/>}/>
     <Route path='/signup' element={<Signup/>}/>
     <Route path='/edit-write' element={<Editwrite/>}/>
+    <Route path="/add-record" element={<AddRecord />} />
 
-    </Routes>    
+    </Routes>
+    </AuthProvider>
   )
 }
 

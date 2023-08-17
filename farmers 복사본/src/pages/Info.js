@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from './Header';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './styles/Home_Farm.css';
 
@@ -11,35 +11,37 @@ function ProfileInfo() {
     const [inventory, setInventory] = useState([]);
 
     const navigate = useNavigate();
+    const location = useLocation();
+    const userInfoFromLocation = location.state || {};
+    const { userId, token } = location.state || {};
 
     useEffect(() => {
-        // userId는 알려진 값이거나 props로 전달될 것으로 가정합니다. 필요에 따라 조정하세요.
-        const userId = 2;
-        const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjkxNTczMTUwLCJleHAiOjU0MjQwNTMxNTB9.FZimhlaTengZe-GN3433woPLkiyvGuyPoC6-d2BLROA";
-        axios.get(`/user/profile/${userId}`, {
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        })
-            .then(response => {
-                if (response.data.status === 200) {
-                    setProfile({
-                        image: response.data.image || "기본_이미지_링크",
-                        nickname: response.data.nickname,
-                        location: response.data.location,
-                        phone: response.data.phone,
-                        field: response.data.field,
-                        spec: response.data.spec,
-                        license: response.data.license
-                    });
-                    setInventory(Array.isArray(response.data.items) ? response.data.items : []);
-                    setRecords(response.data.records || []);
+        if (userId && token) {
+            axios.get(`/user/profile/${userId}`, {
+                headers: {
+                    "Authorization": `Bearer ${token}`
                 }
             })
-            .catch(error => {
-                console.error("프로필 데이터를 가져오는데 오류가 발생했습니다:", error);
-            });
-    }, []); // 빈 의존성 배열을 사용하여 효과가 한 번만 실행되게 합니다.
+                .then(response => {
+                    if (response.data.status === 200) {
+                        setProfile({
+                            image: response.data.image || "기본_이미지_링크",
+                            nickname: response.data.nickname,
+                            location: response.data.location,
+                            phone: response.data.phone,
+                            field: response.data.field,
+                            spec: response.data.spec,
+                            license: response.data.license
+                        });
+                        setInventory(Array.isArray(response.data.items) ? response.data.items : []);
+                        setRecords(response.data.records || []);
+                    }
+                })
+                .catch(error => {
+                    console.error("프로필 데이터를 가져오는데 오류가 발생했습니다:", error);
+                });
+        }
+    }, [userId, token]);
 
     return (
         <>
@@ -54,7 +56,10 @@ function ProfileInfo() {
                     <p className='field'>{profile.field}</p>
                     <p className='crops'>{profile.spec}</p>
                     <p className='status'>{profile.license}</p>
-                    <button onClick={() => navigate('/edit-profile')}>수정하기</button>
+                    <button onClick={() => navigate('/edit-profile', {
+                        state: { userId, token }
+                    })}>수정하기</button>
+
                 </div>
 
                 {/* 인벤토리 부분은 그대로 유지하였습니다. */}
@@ -97,6 +102,9 @@ function ProfileInfo() {
                             <p><strong>데이터:</strong> {record.data}</p>
                         </div>
                     ))}
+                    <button onClick={() => navigate('/add-record', {
+                        state: { userId, token }
+                    })}>거래 내역 추가하기</button>
 
                 </div>
             </div>
