@@ -16,7 +16,9 @@ import Signup from './pages/Signup';
 import Editwrite from './pages/Editwrite';
 import AddRecord from './pages/AddRecord';
 import AddInventory from './pages/AddInventory';
+import Brand from './pages/Brand';
 import { AuthProvider } from './AuthContext';
+import Team from './pages/Team';
 
 function App() {
   return (
@@ -39,7 +41,8 @@ function App() {
     <Route path='/edit-write' element={<Editwrite/>}/>
     <Route path='/add-inventory' element={<AddInventory/>}/>
     <Route path="/add-record" element={<AddRecord />} />
-
+    <Route path='/brand'element={<Brand/>} />
+    <Route path='/team' element={<Team/>}/>
     </Routes>
     </AuthProvider>
   )

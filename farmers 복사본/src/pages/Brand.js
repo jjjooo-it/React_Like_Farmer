@@ -4,7 +4,6 @@ import {useLocation} from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
 import { MdAddToDrive } from 'react-icons/md';
-import Header from './Header';
 
 function Farmer_List() {
     const location = useLocation();
@@ -53,11 +52,13 @@ function Farmer_List() {
 
 //해당 brand에 농부 등록하기 
 function Add_Farmer(props){
+    const location = useLocation();
+    const brandId = location.state.brandId;
     const [addFarmer,setAddFarmer] = useState('');
     setAddFarmer(props.userId);
     const add_Farmer= async () => {
         try {
-
+            const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMyIsImlhdCI6MTY5MTkzNjM0OSwiZXhwIjo1NDI0NDE2MzQ5fQ.hk_VveWhENStASA9hIrDhoGUpAENRkOf0Ib6qKslPQs"; 
             const response = axios.post(`/brand/farmer/${brandId}`,
                 addFarmer,
                 {
