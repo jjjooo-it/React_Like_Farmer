@@ -78,6 +78,18 @@
     display: flex;
     flex-direction: column;
 }
+.propro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.propro>button{
+    margin-top: 20px;
+    width: 220px;
+    margin-right: 25px;
+    height: 43px;
+}
 .profile{
     width: 230px;
     height : 500px;

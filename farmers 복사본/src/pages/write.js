@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from './../AuthContext';
 import './styles/write.css';
 
-function CreatePost() {
+function CreatePost(props) {
     const [post, setPost] = useState({
         location: "",
         description: "",
@@ -48,6 +48,12 @@ function CreatePost() {
 
             console.log(postResponse);
             alert("글이 성공적으로 생성되었습니다!");
+
+            // 게시글 작성 후 프로필 정보를 업데이트한 다음 이전 페이지로 돌아갑니다.
+            if (props.onProfileUpdate) {
+                props.onProfileUpdate();
+            }
+
             navigate(-1);
 
         } catch (error) {
