@@ -19,6 +19,7 @@ import AddInventory from './pages/AddInventory';
 import Brand from './pages/Brand';
 import { AuthProvider } from './AuthContext';
 import Team from './pages/Team';
+import ApplyTeam from './pages/ApplyTeam';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
     <Route path="/add-record" element={<AddRecord />} />
     <Route path='/brand'element={<Brand/>} />
     <Route path='/team' element={<Team/>}/>
+    <Route path='/applyteam' element={<ApplyTeam/>}/>
     </Routes>
     </AuthProvider>
   )
