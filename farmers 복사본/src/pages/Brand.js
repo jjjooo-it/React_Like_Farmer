@@ -3,18 +3,17 @@ import { useState, useEffect } from 'react';
 import {useLocation} from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
-import { MdAddToDrive } from 'react-icons/md';
+
 
 function Farmer_List() {
-    const location = useLocation();
-    const brandId = location.state.brandId;
     const [farmerList, setFarmerList] = useState([]);
-
+   
+    //해당 brand에 속한 농부 list
     const postFarmer= async () => {
         try {
-            const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMyIsImlhdCI6MTY5MTkzNjM0OSwiZXhwIjo1NDI0NDE2MzQ5fQ.hk_VveWhENStASA9hIrDhoGUpAENRkOf0Ib6qKslPQs"; 
-            const response = await axios.post(`/auth/brand/farmer/${brandId}`,
-                farmerList,
+            const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzMCIsImlhdCI6MTY5MjI4NDg2NSwiZXhwIjo1NDI0NzY0ODY1fQ.LjsMebqEz7yiclPpkcaBbozV9V7c2c-u4s_pGlX5e0M"; 
+            const response = await axios.post('/auth/brand/farmer/1',
+                { keyword: '사과' }, 
                 {
                     headers: {
                         "Authorization": `Bearer ${token}`,
@@ -32,6 +31,26 @@ function Farmer_List() {
         postFarmer();
    }, []);
 
+
+   //해당 brand에 농부 등록하기 
+   const add_Farmer= async () => {
+    try {
+        const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMyIsImlhdCI6MTY5MTkzNjM0OSwiZXhwIjo1NDI0NDE2MzQ5fQ.hk_VveWhENStASA9hIrDhoGUpAENRkOf0Ib6qKslPQs"; 
+        const response = axios.post(`/brand/farmer/1`,
+        farmerList,
+            {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                },
+            });
+        console.log(response);
+        alert(response.message);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
     return(
         <>
         {farmerList.length > 0 ? (
@@ -46,47 +65,20 @@ function Farmer_List() {
       ) : (
         <p>해당 브랜드에는 농부가 없습니다</p>
       )}
+        <button onClick={async (e) => {
+                    e.preventDefault();
+                    add_Farmer();
+                }}>이 brand에 참가하기</button>
+
         </>
     )
 }
 
-//해당 brand에 농부 등록하기 
-function Add_Farmer(props){
-    const location = useLocation();
-    const brandId = location.state.brandId;
-    const [addFarmer,setAddFarmer] = useState('');
-    setAddFarmer(props.userId);
-    const add_Farmer= async () => {
-        try {
-            const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMyIsImlhdCI6MTY5MTkzNjM0OSwiZXhwIjo1NDI0NDE2MzQ5fQ.hk_VveWhENStASA9hIrDhoGUpAENRkOf0Ib6qKslPQs"; 
-            const response = axios.post(`/brand/farmer/${brandId}`,
-                addFarmer,
-                {
-                    headers: {
-                        "Authorization": `Bearer ${token}`,
-                    },
-                });
-            console.log(response);
-            alert(response.data.message);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    return(
-        <>
-        <button onClick={async (e) => {
-                    e.preventDefault();
-                    add_Farmer();
-                }}>이 brand에 들어가기</button>
-        </>
-    )
-}
 function Brand_Farmer_List(){
     return(
        <>
         <Header/>
         <Farmer_List/>
-        <Add_Farmer/>
     </>
     )
 }
