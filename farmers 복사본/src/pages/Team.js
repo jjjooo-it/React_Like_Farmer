@@ -51,8 +51,6 @@ function HomeProfile() {
     );
 }
 
-// ... (나머지 import 문과 코드) ...
-
 function Board_Post() {
     const [brandList, setBrandList] = useState([]);
     const { auth } = useAuth();

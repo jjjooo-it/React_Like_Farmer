@@ -38,8 +38,6 @@ function TodayInfo(){
   )
 }
 
-
-
 //검색하기
 function Search_Main(){
   const navigate = useNavigate();

@@ -20,6 +20,7 @@ import Brand from './pages/Brand';
 import { AuthProvider } from './AuthContext';
 import Team from './pages/Team';
 import ApplyTeam from './pages/ApplyTeam';
+import AddFarmer from './pages/AddFarmer';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
     <Route path='/brand'element={<Brand/>} />
     <Route path='/team' element={<Team/>}/>
     <Route path='/applyteam' element={<ApplyTeam/>}/>
+    <Route path='/addfarmer' element={<AddFarmer/>}/>
     </Routes>
     </AuthProvider>
   )

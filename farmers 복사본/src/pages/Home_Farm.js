@@ -68,8 +68,8 @@ function HomeProfile() {
             <button className='profile-btn-card' onClick={handleCardButtonClick}>내 명함</button>
             <button onClick={handleInfoButtonClick} className='profile-btn-edit'><BiEdit style={{ width: "20px", height: "20px", color: "gray" }} />수정하기</button>
         </div>
-            <button onClick={()=>{navigate('/brand-farmer-list')}}>나의 브랜드</button>
-            <button>브랜드만들기</button>
+            <button onClick={()=>{navigate('/team')}}>브랜드 조회</button>
+            <button onClick={()=>{navigate('/applyteam')}}>나만의 브랜드 만들기</button>
         </div>
 
     )
