@@ -23,11 +23,11 @@
 ## 📱주요 화면
 <table>
   <tr>
-    <td><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/5e1e8adb-e503-4d09-b918-e1da17603c28/9e05f796-78a5-408b-91cd-551fb2b3102c/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-05-18_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.33.51.png"></td>
-    <td><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/5e1e8adb-e503-4d09-b918-e1da17603c28/07e4a400-a224-4626-9705-d6446fa33d1e/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-05-18_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.48.04.png"></td>
+    <td><img src="https://github.com/DK-Mobile-Platform/Front/assets/94334477/c6b8583c-bbbe-4239-8934-aa718ee411ea"></td>
+    <td><img src="https://github.com/DK-Mobile-Platform/Front/assets/94334477/db22d9f7-b5cc-4f7d-a53f-90192f507628"></td>
   </tr>
   <tr>
-    <td><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/5e1e8adb-e503-4d09-b918-e1da17603c28/febd7863-16a2-4b6f-bdfd-e4442a1f9677/KakaoTalk_Photo_2024-05-18-23-44-10.jpeg"></td>
-    <td><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/5e1e8adb-e503-4d09-b918-e1da17603c28/47f79f2c-9a35-44c9-bf65-da335b051494/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-05-18_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.43.06.png"></td>
+    <td><img src="https://github.com/DK-Mobile-Platform/Front/assets/94334477/85a2df1c-5967-409b-a234-1309f0e4f34d"></td>
+    <td><img src="https://github.com/DK-Mobile-Platform/Front/assets/94334477/54136ebe-808f-4496-a877-26ebb48da48b"></td>
 </table>
 
