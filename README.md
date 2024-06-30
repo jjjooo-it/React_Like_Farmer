@@ -23,11 +23,11 @@
 ## 📱주요 화면
 <table>
   <tr>
-    <td><img src="https://github.com/DK-Mobile-Platform/Front/assets/94334477/94f06ee8-e778-4a97-9ef2-7084445b0cdb"></td>
-    <td><img src="https://github.com/DK-Mobile-Platform/Front/assets/94334477/a1b3b989-13c7-4ca5-b8fc-bacbecc0cbe2"></td>
+    <td><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/5e1e8adb-e503-4d09-b918-e1da17603c28/9e05f796-78a5-408b-91cd-551fb2b3102c/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-05-18_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.33.51.png"></td>
+    <td><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/5e1e8adb-e503-4d09-b918-e1da17603c28/07e4a400-a224-4626-9705-d6446fa33d1e/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-05-18_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.48.04.png"></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/DK-Mobile-Platform/Front/assets/94334477/be99589c-ae22-42fe-ac1e-1cdc4283d3e3"></td>
-    <td><img src="https://github.com/DK-Mobile-Platform/Front/assets/94334477/909550f7-f245-4322-acad-1b569251126f"></td>
+    <td><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/5e1e8adb-e503-4d09-b918-e1da17603c28/febd7863-16a2-4b6f-bdfd-e4442a1f9677/KakaoTalk_Photo_2024-05-18-23-44-10.jpeg"></td>
+    <td><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/5e1e8adb-e503-4d09-b918-e1da17603c28/47f79f2c-9a35-44c9-bf65-da335b051494/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-05-18_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.43.06.png"></td>
 </table>
 
