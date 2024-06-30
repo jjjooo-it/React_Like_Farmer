@@ -23,11 +23,12 @@
 ## 📱주요 화면
 <table>
   <tr>
-    <td><img src="https://github.com/DK-Mobile-Platform/Front/assets/94334477/c6b8583c-bbbe-4239-8934-aa718ee411ea"></td>
-    <td><img src="https://github.com/DK-Mobile-Platform/Front/assets/94334477/db22d9f7-b5cc-4f7d-a53f-90192f507628"></td>
+        <td><img src="https://github.com/DK-Mobile-Platform/Front/assets/94334477/54136ebe-808f-4496-a877-26ebb48da48b"></td>
+        <td><img src="https://github.com/DK-Mobile-Platform/Front/assets/94334477/85a2df1c-5967-409b-a234-1309f0e4f34d"></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/DK-Mobile-Platform/Front/assets/94334477/85a2df1c-5967-409b-a234-1309f0e4f34d"></td>
-    <td><img src="https://github.com/DK-Mobile-Platform/Front/assets/94334477/54136ebe-808f-4496-a877-26ebb48da48b"></td>
+      <td><img src="https://github.com/DK-Mobile-Platform/Front/assets/94334477/db22d9f7-b5cc-4f7d-a53f-90192f507628"></td>
+          <td><img src="https://github.com/DK-Mobile-Platform/Front/assets/94334477/c6b8583c-bbbe-4239-8934-aa718ee411ea"></td>
+
 </table>
 
